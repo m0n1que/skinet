@@ -1,40 +1,42 @@
-<div class="container">
+<div class="container mt-3">
     <div class="row">
 
         <section class="col-3">
-            <h5 class="text-warning ml-3">Sorts</h5>
-            <select name="" id="" class="custom-select mb-3" 
-                (change)="onSortSelected($event.target.value)"
-            >
-                <option *ngFor="let sort of sortOpstions"
-                    [value]="sort.value"
+            <ng-container *ngIf="types && brands">
+                <h5 class="text-warning ml-3 mt-5 mb-3">Sorts</h5>
+                <select name="" id="" class="custom-select mb-3" 
+                    (change)="onSortSelected($event.target.value)"
                 >
-                    {{sort.name}}
-                </option>        
-            </select>
+                    <option *ngFor="let sort of sortOpstions"
+                        [value]="sort.value"
+                    >
+                        {{sort.name}}
+                    </option>        
+                </select>
 
-            <h5 class="text-warning ml-3">Brands</h5>
-            <ul class="list-group my-3">
-                <li class="list-group-item" 
-                    *ngFor="let item of brands"
-                    [class.active]="item.id === this.shopParams.brandId"
-                    [value]="item.id"
-                    (click)="onBrandSelected(item.id)"
-                >
-                    {{item.name}}
-                </li>
-            </ul>
+                <h5 class="text-warning ml-3">Brands</h5>
+                <ul class="list-group my-3">
+                    <li class="list-group-item" 
+                        *ngFor="let item of brands"
+                        [class.active]="item.id === this.shopParams.brandId"
+                        [value]="item.id"
+                        (click)="onBrandSelected(item.id)"
+                    >
+                        {{item.name}}
+                    </li>
+                </ul>
 
-            <h5 class="text-warning ml-3">Types</h5>
-            <ul class="list-group my-3">
-                <li class="list-group-item " *ngFor="let item of types"
-                    [class.active]="item.id === this.shopParams.typeId"
-                    [value]="item.id"
-                    (click)="onTypeSelected(item.id)"
-                >
-                    {{item.name}}
-                </li>
-            </ul>
+                <h5 class="text-warning ml-3">Types</h5>
+                <ul class="list-group my-3">
+                    <li class="list-group-item " *ngFor="let item of types"
+                        [class.active]="item.id === this.shopParams.typeId"
+                        [value]="item.id"
+                        (click)="onTypeSelected(item.id)"
+                    >
+                        {{item.name}}
+                    </li>
+                </ul>
+            </ng-container>            
         </section>
         <section class="col-9">
             <div class="d-flex justify-content-between align-items-center pb-2">
@@ -45,7 +47,7 @@
                     [pageNumber]="this.shopParams.pageNumber"
                 ></app-paging-header>
 
-                <div class="form-inline mt-2">
+                <div class="form-inline" *ngIf="products">
                     <input (keyup.enter)="onSearch()" class="form-control mr-2" #search style="width: 300px;" placeholder="Search" type="text">
                     <button (click)="onSearch()" 
                         class="btn btn-outline-primary  my-2">Search</button>
