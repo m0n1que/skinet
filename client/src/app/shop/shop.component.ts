@@ -3,7 +3,6 @@ import { IProduct } from '../shared/models/product';
 import { ShopService } from './shop.service';
 import { IBrand } from '../shared/models/brand';
 import { IType } from '../shared/models/productType';
-import { error } from 'protractor';
 import { ShopParams } from '../shared/models/shopParams';
 
 @Component({
